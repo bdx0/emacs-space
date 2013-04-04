@@ -1,0 +1,19 @@
+;; Object baoduy.emacs
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "baoduy.emacs"
+  :file "Project.ede"
+  :name "dotEmacs"
+  :version "0.1dev"
+  :targets
+  (list
+    (ede-proj-target-elisp "test"
+      :name "test"
+      :path ""
+      :source '("init.el" "ui.el" "cui.el" "cusFunc.el" "baoduy.el" "ede-projects.el")
+      :compiler 'ede-emacs-compiler
+      :aux-packages '("")
+      :pre-load-packages '("")))
+  :web-site-url "https://code.google.com/p/emacs-space/"
+  :variables '(("EMACSFLAGS" . "-batch --no-site-file --eval '(setq debug-on-error t)' -l \"../../cedet-remove-builtin.el\"") ("EMACS" . "@echo \"    > $@\";emacs") ("AUTOGENFLAGS" . "-L . --eval '(progn (require (quote cedet-compat)) (require (quote mode-local)))'"))
+  :configuration-variables nil
+  :metasubproject t)
