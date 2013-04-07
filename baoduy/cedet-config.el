@@ -13,6 +13,20 @@
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 ;; ====================
+;; config for yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+(require 'dropdown-list)
+(setq yas-prompt-functions '(yas-dropdown-prompt
+			     yas-ido-prompt
+			     yas-completing-prompt))
+;; ====================
+;; config for title bar
+(setq frame-title-format
+      (list (format "CEDET@%s %%S: %%j " (system-name))
+	    '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+;; ====================
 ;; CEDET TOOLS
 (load-file (concat baoduy-repo-path "cedet/cedet-devel-load.el")) 
 ;; Enable Semantic
@@ -121,11 +135,7 @@
 
 
 ;; end CEDET TOOLS
-(require 'nav)
-(nav-disable-overeager-window-splitting)
-;; Optional: set up a quick key to toggle nav
-(global-set-key [f8] 'nav-toggle)
-;; end OTHERS
+;; ====================
 ;; Config for EDE Projects
 (ede-enable-generic-projects)
 (ede-cpp-root-project

@@ -9,7 +9,7 @@
     (ede-proj-target-elisp "test"
       :name "test"
       :path ""
-      :source '("init.el" "ui.el" "cui.el" "cusFunc.el" "baoduy.el" "ede-projects.el")
+      :source '("init.el" "baoduy/ui.el" "baoduy/cui.el" "baoduy/cusFunc.el" "baoduy.el")
       :compiler 'ede-emacs-compiler
       :aux-packages '("")
       :pre-load-packages '("")))

@@ -14,7 +14,7 @@ AUTOGENFLAGS=-L . --eval '(progn (require (quote cedet-compat)) (require (quote 
 top=
 ede_FILES=Project.ede Makefile
 
-test_LISP=init.el ui.el cui.el cusFunc.el
+test_LISP=init.el ui.el cui.el cusFunc.el baoduy.el ede-projects.el
 LOADPATH= ../c_dev_el/emacs/lisp/
 VERSION=0.1dev
 DISTDIR=$(top)dotEmacs-$(VERSION)

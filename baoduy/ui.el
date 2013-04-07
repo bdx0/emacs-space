@@ -2,7 +2,7 @@
 ;; set title frame format
 (require 'customize-tabbar)
 (setq frame-title-format
-      (list (format "cedet@%s %%S: %%j " (system-name))
+      (list (format "COMMON@%s %%S: %%j " (system-name))
 	    '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 ;; config for linum
@@ -18,7 +18,6 @@
 		     line)
 		    'face 'linum)))
 
-(tool-bar-mode -1)
 (setq x-select-enable-clipboard t) 
 (setq indent-tabs-mode t)
 (setq tab-width 4)
