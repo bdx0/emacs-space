@@ -11,7 +11,7 @@
   "This function use to run CEDET & Emacs on other process"
   (setenv "WORK_MODE" "CEDET")
   ;; (call-process "emacs" nil nil nil "&")
-  (start-process "CEDET" nil "emacs")
+  (start-process "CEDET" nil "emacs" "--debug-init")
   )
 
 (defun run-C-C++-IDE-other-process ()
@@ -19,6 +19,12 @@
   (setenv "WORK_MODE" "C/C++ IDE")
   ;; (call-process "emacs" nil nil nil "&")
   (start-process "C/C++ IDE" nil "emacs")
+  )
+
+(defun run-JAVA-IDE-other-process ()
+  "This function use to run JAVA IDE on other process"
+  (setenv "WORK_MODE" "JAVA")
+  (start-process "JAVA IDE" nil "emacs")
   )
 
 (defun CEDET ()

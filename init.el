@@ -19,6 +19,8 @@
  '(display-time-mode t)
  '(exec-path (quote ("/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/home/w34p0n/tools/c_dev_el/tools/src" "/home/w34p0n/tools/installed/libexec/emacs/24.1.50/x86_64-unknown-linux-gnu")))
  '(initial-buffer-choice "~/mydisk/workspace/")
+ '(openwith-associations (quote (("\\.\\(?:\\pdf\\|ps\\|djvu\\)\\'" "okular" (file)) ("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp4\\|mp3\\)\\'" "vlc" (file)) ("\\.\\(?:jp?g\\|png\\)\\'" "gwenview" (file)) ("\\.\\(?:\\doc\\|ppt\\|xls\\|odt\\)\\'" "libreoffice" (file)) ("\\.chm\\'" "kchmviewer" (file)))))
+ '(openwith-mode t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))

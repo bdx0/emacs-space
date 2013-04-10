@@ -11,6 +11,9 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
 	     '("orgmode" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives
+	     '("sunrise" . "http://joseito.republika.pl/sunrise-commander/"))
+
 (package-initialize)
 ;; Set up package system
 (defvar my-packages
@@ -40,7 +43,7 @@
   (print "load cedet space")
   (require 'baoduy/org-config))
  ((string= "JAVA" work-mode) 
-  (print "load cedet space")
+  (print "load JAVA IDE space")
   (require 'baoduy/java-config))
  ((string= "ANDROID" work-mode) 
   (print "load cedet space")

@@ -5,8 +5,9 @@
 	    '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 ;; ===================
 ;; For C/C++ mode
+(global-set-key [f9] 'compile)
 (defun setting-for-c-mode () 
-  (local-set-key [f9] 'compile)
+  
   )
 
 (add-hook 'c-mode-common-hook 'setting-for-c-mode)
