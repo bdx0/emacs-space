@@ -4,5 +4,4 @@
 .hg
 .svn
 elpa
-repo/cedet/*
-repo/jdee/*
+repo/jdee
