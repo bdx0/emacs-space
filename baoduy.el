@@ -1,37 +1,5 @@
 (require 'package)
-
-;; config my infomation
-(setq v_home (equal (getenv "USER") "w34p0n"))
-(setq user-mail-address "dbaoduy@gmail.com")
-(setq user-full-name "heck_cell")
-(defvar  work-mode (getenv "WORK_MODE"))
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-	     '("orgmode" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives
-	     '("sunrise" . "http://joseito.republika.pl/sunrise-commander/"))
-
-(package-initialize)
-;; Set up package system
-(defvar my-packages
-  '(clojure-mode glsl-mode graphviz-dot-mode ido-ubiquitous
-    impatient-mode javadoc-lookup js2-mode lua-mode magit markdown-mode
-    memoize multiple-cursors nrepl paredit parenface rdp simple-httpd
-    skewer-mode smex yasnippet inf-ruby org)
-  "A list of packages to ensure are installed at launch.")
-
-(unless package-archive-contents
-  (package-refresh-contents))
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
-(require 'baoduy/ui)
-(require 'baoduy/cui)
-(require 'baoduy/cusFunc)
-
+;; loading command `emacsclient -e "(run-C-C++-IDE-other-process)"`
 (cond
  ((string= "CEDET" work-mode) 
   (print "load cedet space")
@@ -54,9 +22,17 @@
  ((string= "SCHEME" work-mode) 
   (print "load cedet space")
   (require 'baoduy/scheme-config))
+ ((string= "CLOJURE" work-mode)
+  (print "My setup for clojure environment")
+  (require 'baoduy/clojure-config))
  (t 
   (print "Load default space")
+  (setq frame-title-format
+        (list (format "COMMON@%s %%S: %%j " (system-name))
+              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
   (server-start))
  )
+
+(require 'baoduy/cusFunc)
 
 (provide 'baoduy)

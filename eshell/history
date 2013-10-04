@@ -1,0 +1,54 @@
+ls
+ls lisp/
+ant clean
+ant
+/home/w34p0n/tools/emacs-space/repo/jdee/jdee/build.xml:120: Execute failed: java.io.IOException: Cannot run program "emacs": java.io.IOException: error=2, No such file or directory
+ant 
+emacs
+env
+exit
+cd ../repo/jdee/jdee/lisp/
+cd ..
+nat
+ant
+clear
+ls
+env
+env
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbiexitn:/bin:/usr/games
+exit
+env
+env
+exit
+ls
+env
+exit
+env
+exit
+env
+exit
+ant clean
+ant 
+lsl     [exec] Wrote /home/w34p0n/tools/emacs-space/repo/jdee/jdee/build/lisp/which.elc
+ls
+build  build.properties  build.xml  config  dist  doc  java  lisp  xelisp
+exit
+ls
+rm `find . -name '*.elc'`
+ls
+find . -name '*.elc'
+rm `find . -name '*.elc'`
+ls
+which ls
+*ls
+which *ls
+*ls `*find . -name '*.elc'`
+*ls `*find . -name '*.elc'`*find . -name '*.elc'`
+ls --help
+ls ${find . -name '*.elc'}
+rm ${find . -name '*.elc'}
+rm - ${find . -name '*.elc'}
+rm - ${find . -name '*.elc'}
+find . -name '*.elc'
+ls
+exit

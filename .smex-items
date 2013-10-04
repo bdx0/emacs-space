@@ -1,0 +1,22 @@
+
+;; ----- smex-history -----
+(
+ list-packages
+ nrepl-jack-in
+ customize-face
+ list-colors-display
+ describe-face
+ eval-expression
+ eval-defun
+)
+
+;; ----- smex-data -----
+(
+ (nrepl-jack-in . 4)
+ (eval-expression . 4)
+ (eval-defun . 1)
+ (customize-face . 2)
+ (describe-face . 1)
+ (list-colors-display . 1)
+ (list-packages . 1)
+)

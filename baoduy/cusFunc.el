@@ -11,29 +11,35 @@
   "This function use to run CEDET & Emacs on other process"
   (setenv "WORK_MODE" "CEDET")
   ;; (call-process "emacs" nil nil nil "&")
-  (start-process "CEDET" nil "emacs" "--debug-init")
-  )
+  (start-process "CEDET" "*Messages*" "emacs"))
 
 (defun run-C-C++-IDE-other-process ()
   "This function use to run C/C++ IDE on other process"
   (setenv "WORK_MODE" "C/C++ IDE")
   ;; (call-process "emacs" nil nil nil "&")
-  (start-process "C/C++ IDE" nil "emacs")
-  )
+  (start-process "C/C++ IDE" "*Messages*" "emacs"))
 
 (defun run-JAVA-IDE-other-process ()
   "This function use to run JAVA IDE on other process"
   (setenv "WORK_MODE" "JAVA")
-  (start-process "JAVA IDE" nil "emacs")
-  )
+  (start-process "JAVA IDE" "*Messages*" "emacs" "--debug-init"))
+
+(defun run-CLOJURE-IDE-other-process ()
+  "This function use to run CLOJURE IDE on other process"
+  (setenv "WORK_MODE" "CLOJURE")
+  (start-process "CLOJURE IDE" "*Messages*" "emacs" "--debug-init"))
+
+(defun clojure-run ()
+  "Call it to run CLOJURE IDE"
+  (interactive)
+  (run-CLOJURE-IDE-other-process))
 
 (defun CEDET ()
   "Call it to run CEDET IDE"
   (interactive)
-  (run-CEDET-other-process)
-  )
+  (run-CEDET-other-process))
 
-  ;; config for dired+
+;; config for dired+
 (setq show-paren-style 'expression)
 (show-paren-mode t)
 
@@ -43,7 +49,10 @@
 
 (global-set-key  [f1] (lambda () (interactive) (manual-entry (current-word))))
 (global-set-key  [f2] (lambda ()  (interactive)(shell)))
-(global-set-key (kbd "<C-escape>") 'kill-current)
+;; (global-unset-key (kbd "<C-z>"))
+;; (global-unset-key (kbd "<C-S-z>"))
+(global-set-key "\C-z" 'undo)
+(global-set-key (kbd "<M-escape>") 'kill-current)
 (global-set-key [S-mouse-2] 'browse-url-at-mouse)
 (global-set-key [C-tab] 'other-window)
 
@@ -113,7 +122,79 @@
 ;; OTHER FUNCTION
 (require 'openwith)
 (openwith-mode t)
+(add-hook 'eshell-mode-hook
+          '(lambda nil
+             ;; (eshell/export "EPOCROOT=\\Paragon\\")
+             (let ((path (getenv "PATH")))
+               (setq path (concat  "/home/w34p0n/tools/c_dev_el/tools/src:" path))
+               (setenv "PATH" path))
+             (local-set-key "\C-u" 'eshell-kill-input)))
 ;; end OTHER FUNCTION
 
+;; Buttonize file path
+(defun buttonize-buffer ()
+  "Turn all file paths and URLs into buttons."
+  (interactive)
+  (require 'ffap)
+  (deactivate-mark)
+  (let (token guess beg end reached bound len)
+    (save-excursion
+      (setq reached (point-min))
+      (goto-char (point-min))
+      (while (re-search-forward ffap-next-regexp nil t)
+        ;; There seems to be a bug in ffap, Emacs 23.3.1: `ffap-file-at-point'
+        ;; enters endless loop when the string at point is "//".
+        (setq token (ffap-string-at-point))
+        (unless (string= "//" (substring token 0 2))
+          ;; Note that `ffap-next-regexp' only finds some "indicator string" for a
+          ;; file or URL. `ffap-string-at-point' blows this up into a token.
+          (save-excursion
+            (beginning-of-line)
+            (when (search-forward token (point-at-eol) t)
+              (setq beg (match-beginning 0)
+                    end (match-end 0)
+                    reached end))
+            )
+          (message "Found token %s at (%d-%d)" token beg (- end 1))
+          ;; Now let `ffap-guesser' identify the actual file path or URL at
+          ;; point.
+          (when (setq guess (ffap-guesser))
+            (message "  Guessing %s" guess)
+            (save-excursion
+              (beginning-of-line)
+              (when (search-forward guess (point-at-eol) t)
+                (setq len (length guess) end (point) beg (- end len))
+                ;; Finally we found something worth buttonizing. It shall have
+                ;; at least 2 chars, however.
+                (message "    Matched at (%d-%d]" beg (- end 1))
+                (unless (or (< (length guess) 2))
+                  (message "      Buttonize!")
+                  (make-button beg end :type 'find-file-button))
+                )
+              )
+            )
+          ;; Continue one character after the guess, or the original token.
+          (goto-char (max reached end))
+          (message "Continuing at %d" (point))
+          )
+        )
+      )
+    )
+  )
+
+(defun buttonize-current-buffer-on-idle (&optional secs)
+  "Idle-timer (see \\[run-with-idle-timer]) that buttonizes filenames and URLs.
+SECS defaults to 60 seconds idle time."
+  (interactive)
+  (run-with-idle-timer (or secs 60) t 'buttonize-buffer))
+
+;; (add-hook 'after-init-hook 'buttonize-current-buffer-on-idle) 
+;; end Buttonize 
+;;; customnize function
+(defun restart-emacs ()
+  (interactive)
+  (load-file (concat baoduy-emacs-src "init.el"))
+  )
+;;; END customize func
 
 (provide 'baoduy/cusFunc)
