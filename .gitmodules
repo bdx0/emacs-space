@@ -1,0 +1,3 @@
+[submodule "cedet"]
+      path = repo/cedet
+      url = git://git.randomsample.de/cedet.git
