@@ -12,9 +12,10 @@
 ;; config my infomation
 (require 'package)
 (defvar v_home (equal (getenv "USER") "w34p0n"))
-(defvar quser-mail-address "dbaoduy@gmail.com")
+(defvar user-mail-address "dbaoduy@gmail.com")
 (defvar user-full-name "heck_cell")
 (defvar work-mode (getenv "WORK_MODE"))
+(defvar user-apps-dir (concat (getenv "HOME") "/tools"))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
@@ -30,13 +31,13 @@
 ;; Set up package system
 (defvar my-packages '(glsl-mode
                       graphviz-dot-mode
-                      ido-ubiquitous
                       impatient-mode
-                      javadoc-lookup
                       js2-mode
                       lua-mode
-                      magit
                       markdown-mode
+                      ido-ubiquitous
+                      javadoc-lookup
+                      magit
                       memoize
                       multiple-cursors
                       paredit
@@ -49,21 +50,14 @@
                       inf-ruby
                       org
                       color-theme
-                      clojure-mode
-                      clojure-test-mode
-                      nrepl
-                      auto-complete
+                      clojure-mode clojure-test-mode nrepl
+                      auto-complete auto-complete-nxml
                       openwith
                       dired+
                       ecb
-                      ac-dabbrev
-                      ac-geiser
-                      ac-helm
-                      ac-ja
-                      ac-js2
-                      ac-math
-                      ac-nrepl
-                      ac-slime)                      
+                      ac-dabbrev ac-geiser ac-helm ac-ja ac-js2 ac-math ac-nrepl ac-slime
+		      emacs-eclim
+		      e2wm calfw calfw-gcal)                       
   "A list of packages to ensure are installed at launch.")
 
 ;; starter-kit
@@ -95,4 +89,4 @@
 (require 'baoduy/ui)
 (require 'baoduy/cui)
 
-(print "Hello my emacs project ::^^::")
+(print "hello my emacs project ::^^::")

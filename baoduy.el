@@ -13,6 +13,9 @@
  ((string= "JAVA" work-mode) 
   (print "load JAVA IDE space")
   (require 'baoduy/java-config))
+ ((string= "ECLIM" work-mode) 
+  (print "load ECLIM IDE space")
+  (require 'baoduy/eclim-config))
  ((string= "ANDROID" work-mode) 
   (print "load cedet space")
   (require 'baoduy/android-config))
@@ -34,5 +37,6 @@
  )
 
 (require 'baoduy/cusFunc)
+(require 'baoduy/cusKey)
 
 (provide 'baoduy)

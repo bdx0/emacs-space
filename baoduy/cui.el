@@ -12,19 +12,22 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-
+(global-hl-line-mode)
+(delete-selection-mode t)
+(transient-mark-mode t)
 ;;; get color theme
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-tty-dark)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal))))
- '(show-paren-match ((t (:background "DarkGrey"))))
+ '(show-paren-match ((t (:background "gray30"))))
  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white"))))
- '(highlight ((t (:background "RoyalBlue"))))
+ '(highlight ((t (:background "gray15"))))
  )
 (provide 'baoduy/cui)

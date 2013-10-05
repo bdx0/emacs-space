@@ -20,5 +20,11 @@
 (setq tab-stop-list ())
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
+;; Display the time
+(setq display-time-default-load-average nil)
+(setq display-time-use-mail-icon t)
+(setq display-time-24hr-format t)
+(display-time-mode t)
+
 ;; end UI
 (provide 'baoduy/ui)
