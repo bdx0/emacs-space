@@ -1,8 +1,22 @@
-(require 'dired+)
-(require 'paren)
-(require 'nav)
-(require 'ido)
-(require 'smex)
+(defun ac-config-custom ()
+  "This function make a custom config for auto-complete package."
+  (ac-add-sources '(ac-source-abbrev
+		    ac-source-dictionary ac-source-yasnippet
+		    ac-source-features ac-source-words-in-all-buffer
+		    ) t)
+  (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
+  (add-hook 'css-mode-hook 'ac-css-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+
+(defun ac-add-sources (sources &optional is-clear-before)
+  "This function add more a list source in ac-sources."
+  (cond (is-clear-before
+	 ;; (message "reset ac-sources")
+	 (setq ac-sources '())))		;clear ac-source if is-clear-before boundp
+  (setq ac-sources (append ac-sources sources)))
 
 (defun untabify-buffer ()
   (interactive)
@@ -53,9 +67,9 @@
   (start-process "ECLIM IDE" "*Messages*" "emacs" "--debug-init"))
 
 (defun eclim-run ()
-"Call it to run ECLIM IDE"
-(interactive)
-(run-ECLIM-IDE-other-process))
+  "Call it to run ECLIM IDE"
+  (interactive)
+  (run-ECLIM-IDE-other-process))
 
 (defun clojure-run ()
   "Call it to run CLOJURE IDE"
@@ -195,6 +209,10 @@ SECS defaults to 60 seconds idle time."
   (interactive)
   (load-file (concat baoduy-emacs-src "init.el"))
   )
-;;; END customize func
 
-(provide 'baoduy/cusFunc)
+(defun open-index-org ()
+  "open index.org file"
+  (interactive)
+  (find-file (expand-file-name "~/.emacs.d/docs/index.org")))
+
+(provide 'baoduy/misc-func)

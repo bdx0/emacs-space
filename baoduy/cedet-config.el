@@ -1,25 +1,7 @@
-;; =======================================================
-;; config for Autocomplete
-;; =======================================================
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat baoduy-repo-path "auto-complete/dict"))
-(require 'auto-complete-config)
-(global-set-key (kbd "M-RET") 'auto-complete)
-(ac-config-default)			;autocomplete config
-
-
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
-;; ====================
-;; config for yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-(require 'dropdown-list)
-(setq yas-prompt-functions '(yas-dropdown-prompt
-			     yas-ido-prompt
-			     yas-completing-prompt))
 ;; ====================
 ;; config for title bar
 (setq frame-title-format
