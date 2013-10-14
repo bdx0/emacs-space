@@ -1,3 +1,100 @@
+;;; misc-func.el --- some elisp utils, that collect from internet.
+;; TODO  create test case for this misc-func.el
+
+;;; Commentary:
+;; 
+
+;;; Code:
+
+(eval-when-compile (require 'cl))
+
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(70 50))))
+
+(defun dbd-set-title-mode (dbd-mode)
+  (setq frame-title-format
+      (list (format "%s@%s %%S: %%j " dbd-mode (system-name))
+            '(buffer-file-name "%f" (dired-directory
+                                     dired-directory "%b"))))
+  )
+
+(defun find-last-killed-file ()
+  (interactive)
+  (let ((active-files (loop for buf in (buffer-list)
+                            when (buffer-file-name buf) collect it)))
+    (loop for file in recentf-list
+          unless (member file active-files) return (find-file file))))
+
+(defun dbd-add-to-push-queue ()
+  "Add the file associated with the current buffer to post queue in
+push-queue.org"
+  (interactive)
+  (let ((file (buffer-file-name)))
+    (when (null file)
+      (error "Buffer not associated with file."))
+    (find-file "/Users/jcs/org/blog/push-queue.org")
+    (beginning-of-buffer)
+    (if (search-forward-regexp "^\\* Ready to Post")
+        (progn
+          (forward-line)
+          (org-end-of-item-list)
+          (insert (format "- [ ] [[%s][%s]]\n" file (file-name-base file)))
+          (org-update-statistics-cookies 'all))
+      (error "Missing top-level header."))))
+(defun kill-ring-save-keep-highlight (beg end)
+  "Keep the region active after the kill."
+  (interactive "r")
+  (prog1 (kill-ring-save beg end)
+    (setq deactivate-mark nil)))
+
+(defun show-info-at-point ()
+  "This function get the curent word at ponter. Then, find manual entry (man page) for this word."
+  (interactive)
+  (manual-entry (current-word))
+  )
+
+(defun dbd-delete (x l &optional f)
+  "This function is not good as delete written in C source code. It throw error \"Stack overflow at equal\" when run with `find-file command"
+  (if l
+      (if f
+	  (if (funcall  f (car l) x)
+	      (cdr l)
+	    (cons (car l)
+		  (dbd-delete x (cdr l) f)))
+	(if (eq (car l) x)
+	    (cdr l)
+	  (cons (car l)
+		(dbd-delete x (cdr l))))		   
+	)))
+
+(defun dbd-list-dir-with-exclude (dir &rest exclude-files)
+  (mapcar
+   (lambda (x) (concat dir x))
+   (let ((ptr exclude-files)
+	 (files-name (directory-files (expand-file-name
+				       dir))))
+     (while ptr
+       (progn
+	 (setq ptr (cdr ptr))
+	 (setq files-name (dbd-delete (car ptr) files-name 'equal))))
+     files-name
+     )))
+
+(defun dbd-find-grep ()
+  (setq grep-find-command
+	"grep -rnH --exclude=.hg --include=\*.{c,cpp,h} --include=-e 'pattern' ~/src_top/*")
+  )
+
+(defun toggle-speed-bar (&optional arg)
+  (interactive)
+  (speedbar t)
+  )
+
 (defun ac-config-custom ()
   "This function make a custom config for auto-complete package."
   (ac-add-sources '(ac-source-abbrev
@@ -81,13 +178,13 @@
   (interactive)
   (run-CEDET-other-process))
 
-(defun kill-current() 
+(defun kill-current()
   (interactive)
   (kill-buffer (current-buffer)))
 
 ;; duplicating lines
 (defun djcb-duplicate-line (&optional commentfirst)
-  "comment line at point; if COMMENTFIRST is non-nil, comment the original" 
+  "comment line at point; if COMMENTFIRST is non-nil, comment the original"
   (interactive)
   (beginning-of-line)
   (push-mark)
@@ -99,7 +196,7 @@
      (concat (if (= 0 (forward-line 1)) "" "\n") str "\n"))
     (forward-line -1)))
 
-;;comment current line 
+;;comment current line
 (defun toggle-comment-line ()
   (interactive)
   (save-excursion
@@ -120,7 +217,7 @@
   (end-of-line)
   (newline)
   ;; or (newline-and-indent)
-  (yank)					  
+  (yank)
   )
 
 (defun move-line-up ()
@@ -129,7 +226,7 @@
   (kill-line)
   (delete-char 1)
   (previous-line)
-  (yank)					  
+  (yank)
   (newline)
   ;; or (newline-and-indent)
   (previous-line)
@@ -202,8 +299,8 @@ SECS defaults to 60 seconds idle time."
   (interactive)
   (run-with-idle-timer (or secs 60) t 'buttonize-buffer))
 
-;; (add-hook 'after-init-hook 'buttonize-current-buffer-on-idle) 
-;; end Buttonize 
+;; (add-hook 'after-init-hook 'buttonize-current-buffer-on-idle)
+;; end Buttonize
 ;;; customnize function
 (defun restart-emacs ()
   (interactive)
@@ -213,6 +310,55 @@ SECS defaults to 60 seconds idle time."
 (defun open-index-org ()
   "open index.org file"
   (interactive)
-  (find-file (expand-file-name "~/.emacs.d/docs/index.org")))
+  (find-file-read-only (expand-file-name "~/Dropbox/org/index.org")))
 
+(defun dbd-or2blog-open ()
+  "open index.org file"
+  (interactive)
+  (find-file-read-only (expand-file-name "~/Dropbox/org/blogs/index.org")))
+(defun root-portal ()
+       (interactive)
+       ;; frame settings
+       (menu-bar-mode -1)
+       (tool-bar-mode -1)
+       (xterm-mouse-mode 1)
+       ;; prepare
+       (delete-other-windows)
+       ;; need to start this first for calendar buffer to end up lowest
+       (calendar)
+       (split-window-horizontally)
+       ;; build window configuration
+       (other-window 2)
+       (split-window)
+       (set-window-text-height nil 25)
+       (split-window-horizontally)
+       (other-window 1)
+       ;; terminal window width
+       (enlarge-window-horizontally
+        (- 80 (window-width)))
+       (other-window 4)
+       ;; now start programms
+       (other-window 1)
+       (ansi-term "/bin/bash" "top")
+       ;(term-exec (current-buffer) "top" "top" nil nil)
+       (insert "top")
+       (term-send-input)
+       (other-window 1)
+       (emacs-wiki-find-file "WelcomePage")
+       (other-window 1)
+       (eshell)
+       (other-window 2)
+       (calculator)
+       ;; turn off undo for terminal, to avoid memory exhaust
+       (with-current-buffer "*top*" (setq buffer-undo-list t))
+       ;; hook settings...
+       (add-hook 'kill-emacs-hook
+             (lambda ()
+               (save-buffer (get-buffer "freenotes"))
+               (save-buffer (get-buffer "WelcomePage"))
+               (emacs-wiki-publish)
+               (eshell-save-some-history)
+               (set-buffer (get-buffer "*top*"))
+               (term-quit-subjob))))
 (provide 'baoduy/misc-func)
+;;; misc-func.el ends here

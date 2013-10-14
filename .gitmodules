@@ -1,3 +1,6 @@
 [submodule "cedet"]
       path = repo/cedet
       url = git://git.randomsample.de/cedet.git
+[submodule "repo/org-mode"]
+	path = repo/org-mode
+	url = git://repo.or.cz/org-mode.git

@@ -1,3 +1,11 @@
+;;; dbd.load.el --- first load in default mode
+
+;;; Commentary:
+;; 
+
+(require 'package)
+(require 'org-loaddefs)
+(require 'org-habit)
 (require 'dbd-modes)
 (require 'dired+)
 (require 'paren)
@@ -9,4 +17,7 @@
 (require 'auto-highlight-symbol)
 (require 'highlight-symbol)
 
-(provide 'baoduy/load-package)
+
+(provide 'dbd-load)
+
+;;; dbd.load.el ends here

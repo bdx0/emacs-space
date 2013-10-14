@@ -4,6 +4,7 @@
 
 (smex-initialize) ; Can be omitted. This might cause a (minimal) delay when Smex is auto-initialized on its first run.
 
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 (global-set-key [(control f3)] 'highlight-symbol-at-point)
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
@@ -24,7 +25,7 @@
 (setq show-paren-style 'expression)
 (show-paren-mode t)
 
-(global-set-key  [f1] (lambda () (interactive) (manual-entry (current-word))))
+(global-set-key  [f1] 'toggle-speed-bar)
 (global-set-key  [f2] (lambda ()  (interactive)(shell)))
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-S-z") 'redo)
@@ -49,6 +50,8 @@
 
 (global-set-key (kbd "<M-up>") 'move-line-up)
 (global-set-key (kbd "M-p") 'move-line-up)
-
+;; yank without leave highlight
+(global-set-key (kbd "<M-w>") 'kill-ring-save-keep-highlight)
+(global-set-key (kbd "M-w") 'kill-ring-save-keep-highlight)
 
 (provide 'baoduy/cusKey)

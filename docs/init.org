@@ -1,35 +1,33 @@
 #+startup: showstars
 
 * Emacs overview
-Emacs is an extremely powerful text editor, which, in addition to facilities for working with computer languages, also has unmatched facilities for working with Latex and XML documents.
-The packages on this site are mainly intended to enhance the usefulness of Emacs in editing Latex and XML documents, and to make this functionality more accessible to the non-programmer
+  Emacs is an extremely powerful text editor, which, in addition to facilities for working with computer languages, also has unmatched facilities for working with Latex and XML documents.
+  The packages on this site are mainly intended to enhance the usefulness of Emacs in editing Latex and XML documents, and to make this functionality more accessible to the non-programmer
 ** Emacs packages
-Auto-complete,
+   Auto-complete,
 ** ispell-multi.el
-ispell-multi.el enables Emacs to keep a number of ispell processes alive in order to spell-check text efficiently in multiple languages, and it provides a hook that tells flyspell to switch languages depending on the value of a particular text property.
-It provides the infrastructure on which flyspell-xml-lang.el and flyspell-babel.el (see below) are built, and it is a prerequisite for
+   ispell-multi.el enables Emacs to keep a number of ispell processes alive in order to spell-check text efficiently in multiple languages, and it provides a hook that tells flyspell to switch languages depending on the value of a particular text property.
+   It provides the infrastructure on which flyspell-xml-lang.el and flyspell-babel.el (see below) are built, and it is a prerequisite for
 ** flyspell-xml-lang.el
-flyspell-xml-lang.el will switch the current language dictionary used by flyspell (an Emacs package that highlights misspelled words as you type) to match the language declared by the xml:lang attribute of the current XML document element. The dictionary currently in force is shown in the modeline.
+   flyspell-xml-lang.el will switch the current language dictionary used by flyspell (an Emacs package that highlights misspelled words as you type) to match the language declared by the xml:lang attribute of the current XML document element. The dictionary currently in force is shown in the modeline.
 ** flyspell-babel.el
-flyspell-babel.el is a package that switches the language used by the flyspell spell-checker according to the Babel commands in a Latex file. It can be customized to take into account non-standard language-switching commands, and you can switch off spell-checking for languages for which you don't have a dictionary.
+   flyspell-babel.el is a package that switches the language used by the flyspell spell-checker according to the Babel commands in a Latex file. It can be customized to take into account non-standard language-switching commands, and you can switch off spell-checking for languages for which you don't have a dictionary.
 ** html-script.el
-html-script.el is a package that helps when you are editing an (X)HTML file that contains blocks of code in another language, such as PHP, CSS, JavaScript, or Visual Basic. With one keystroke, you can narrow the buffer to a code block, and switch to the appropriate major-mode for that language, and then switch back again to editing the whole file in the original mode. It works with both Emacs' built-in html-mode and with nxml-mode. It used to work only with nxml-mode, and at that time was called nxml-script.el.
+   html-script.el is a package that helps when you are editing an (X)HTML file that contains blocks of code in another language, such as PHP, CSS, JavaScript, or Visual Basic. With one keystroke, you can narrow the buffer to a code block, and switch to the appropriate major-mode for that language, and then switch back again to editing the whole file in the original mode. It works with both Emacs' built-in html-mode and with nxml-mode. It used to work only with nxml-mode, and at that time was called nxml-script.el.
 ** tei-html-docs-p5.el
-tei-html-docs-p5.el provides a function that looks up the name of the XML element before the cursor and displays the TEI P5 guidelines for that element. It can get the guidelines from the Internet, or from a local copy. It works very nicely with the emacs-w3m interface to the w3m web-browser, but if you don't have that installed, it will display the guidelines in an external web browser.
+   tei-html-docs-p5.el provides a function that looks up the name of the XML element before the cursor and displays the TEI P5 guidelines for that element. It can get the guidelines from the Internet, or from a local copy. It works very nicely with the emacs-w3m interface to the w3m web-browser, but if you don't have that installed, it will display the guidelines in an external web browser.
 ** tei-html-docs-p4.el
-tei-html-docs-p4.el is just as above, but for the TEI P4 Guidelines.
+   tei-html-docs-p4.el is just as above, but for the TEI P4 Guidelines.
 ** fold-dwim.el
-In fold-dwim.el, DWIM stands for "do what I mean", as in the idea that one keystroke can do different things depending on the context. In this package, it means that, if the cursor is in a currently hidden folded construction, we want to show it; if it's not, we want to hide whatever fold the cursor is in.
+   In fold-dwim.el, DWIM stands for "do what I mean", as in the idea that one keystroke can do different things depending on the context. In this package, it means that, if the cursor is in a currently hidden folded construction, we want to show it; if it's not, we want to hide whatever fold the cursor is in.
 ** xterm-extras.el
-xterm-extras.el provides some extra emacs keybindings for the escape sequences transmitted by recent versions of xterm. It will not work with the older versions of xterm that are still often found in use. An up-to-date version of xterm can be obtained from here. You will also need this Xresources file, and this .inputrc file.
+   xterm-extras.el provides some extra emacs keybindings for the escape sequences transmitted by recent versions of xterm. It will not work with the older versions of xterm that are still often found in use. An up-to-date version of xterm can be obtained from here. You will also need this Xresources file, and this .inputrc file.
 ** html-chooser-mode.el
-html-chooser-mode.el provides a set of templates for beginning an XHTML or HTML document, and helps to decide what mode to use when opening either an existing or a new file. By default, it uses nxml-mode for XHTML and html-mode for HTML.
-** Reference 
-1. [[http://interlinked.org/tutorials/emacs.html][Emacs Basics]]
-2. 
-   
-* Emacs initialize
-
+   html-chooser-mode.el provides a set of templates for beginning an XHTML or HTML document, and helps to decide what mode to use when opening either an existing or a new file. By default, it uses nxml-mode for XHTML and html-mode for HTML.
+** Reference
+   1) [[http://interlinked.org/tutorials/emacs.html][Emacs Basics]]
+   2) 
+* Emacs initialize [[file:~/.emacs.d/init.el][init.el]] 
 ** other configure [[https://github.com/overtone/emacs-live][emacs-live]] [[http://www.mygooglest.com/fni/dot-emacs.html][mygooglest.com]]
 ** Hook
 How Emacs Determines Which Major Mode to Load
@@ -39,19 +37,19 @@ Emacs determines what mode to activate by the following mechanisms, in order. If
 2. Check the first line in the file for unix “shebang” syntax (⁖ #!/usr/bin/perl) and match it with interpreter-mode-alist.
 3. Trys to match first line text with magic-mode-alist. (As of emacs 24.1.1, by default this list is empty.)
 4. Match the file name with auto-mode-alist.
-
+   
 ** Simple editor or base-on text
 *** Highlight word under cursor [[https://github.com/nschum/highlight-symbol.el][github]]
-[Ctrl+F3] Highlight at point
-[F3] Next match
-[Shift+F3] Previous match
+    [Ctrl+F3] Highlight at point
+    [F3] Next matchn
+    [Shift+F3] Previous match
 *** Elpa or package.el [[https://github.com/milkypostman/melpa][github]]
-    el-get 
+    el-get
 ** Programming
 *** C/C++ [[file:~/.emacs.d/baoduy/c-c%2B%2B-ide-config.el][c-c++-ide-config.org]]
 ** Feature for programing environment
 *** Folding
-**** yafolding.el 
+**** yafolding.el
 Folding code blocks based on indentation. [[https://github.com/zenozeng/yafolding.el][github]]
 *** Auto complete
 **** Abrrave
@@ -76,5 +74,4 @@ Folding code blocks based on indentation. [[https://github.com/zenozeng/yafoldin
 *** Org reference card [[file:orgcard.org][orgcard.org]]
 ** ShortKeys
    [[http://www.masteringemacs.org/articles/2011/02/08/mastering-key-bindings-emacs/][master key binding]]
-
-
+   

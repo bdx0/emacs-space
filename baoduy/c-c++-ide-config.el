@@ -4,7 +4,7 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
 		("\\.cmake\\'" . cmake-mode))
 	      auto-mode-alist))
-
+(add-hook 'cmake-mode-hook (lambda () (print "use to test autoload when cmake-mode-hook run.")))
 ;; ====================
 ;; config for title bar
 (setq frame-title-format

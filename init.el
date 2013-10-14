@@ -1,4 +1,10 @@
-;; (setq debug-on-error t)
+;; 
+;;
+;;
+;;
+;;
+;;
+;; 
 (setq message-log-max 16384)
 (defconst emacs-start-time (current-time))
 (unless noninteractive
@@ -9,19 +15,27 @@
 
 (defvar user-emacs-directory baoduy-emacs-src)
 (let ((default-directory baoduy-emacs-src))
-  (add-to-list 'load-path default-directory)
-  (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-      (normal-top-level-add-subdirs-to-load-path)))
+  (setq dbd-first-load-path (mapcar (lambda (x) (expand-file-name x)) '("repo/org-mode/lisp" "repo/org-mode/contrib/lisp")))
+  (setq load-path (append dbd-first-load-path load-path))
+  (add-to-list 'load-path default-directory )
+  (normal-top-level-add-subdirs-to-load-path)
+  )
 (defvar baoduy-repo-path 
   (concat baoduy-emacs-src "repo/") "This is a path0 to my repo path")
 ;; config my infomation
-(require 'package)
+(require 'dbd-load)
 (defvar v_home (equal (getenv "USER") "w34p0n"))
 (defvar user-mail-address "dbaoduy@gmail.com")
 (defvar user-full-name "heck_cell")
 (defvar work-mode (getenv "WORK_MODE"))
 (defvar user-apps-dir (concat (getenv "HOME") "/tools"))
 (defvar user-work-dir (concat (getenv "HOME") "/mydisk/workspace"))
+(defvar dbd-dbg nil "set t to turn on debug on error.")
+(defun dbd-log(dbd-log)
+  (if debug-on-error
+      (setq debug-on-error dbd-dbg))
+  (print dbd-log)
+  )
 
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -36,33 +50,35 @@
 
 (package-initialize)
 ;; Set up package system
-(defvar my-packages '(glsl-mode auto-highlight-symbol highlight-symbol
-                      graphviz-dot-mode impatient-mode js2-mode lua-mode markdown-mode
-                      ido-ubiquitous
-                      javadoc-lookup
-                      magit
-                      memoize
-                      multiple-cursors
-                      parenface
-                      rdp
-                      simple-httpd
-                      skewer-mode
-                      smex
-                      yasnippet
-                      inf-ruby
-                      org org-plus-contrib
-                      color-theme
-                      clojure-mode clojure-test-mode nrepl paredit
-		      company company-cmake pysmell pymacs
-                      auto-complete auto-complete-nxml
-                      openwith
-                      dired+
-                      ecb
-                      ac-dabbrev ac-geiser ac-helm ac-ja ac-js2 ac-math ac-nrepl ac-slime
-		      emacs-eclim
-		      e2wm calfw calfw-gcal
-		      cmake-mode cmake-project autopair cpputils-cmake
-		      use-package)                       
+(defvar  my-packages '(glsl-mode auto-highlight-symbol highlight-symbol
+				 graphviz-dot-mode impatient-mode js2-mode lua-mode markdown-mode
+				 ido-ubiquitous
+				 javadoc-lookup
+				 magit
+				 slime
+				 memoize
+				 multiple-cursors
+				 parenface
+				 rdp
+				 simple-httpd
+				 skewer-mode
+				 smex
+				 yasnippet
+				 inf-ruby
+				 ;;				 org org-plus-contrib 
+				 org2blog
+				 color-theme
+				 clojure-mode clojure-test-mode nrepl paredit
+				 company company-cmake pysmell pymacs
+				 auto-complete auto-complete-nxml
+				 openwith
+				 dired+
+				 ecb
+				 ac-dabbrev ac-geiser ac-helm ac-ja ac-js2 ac-math ac-nrepl ac-slime
+				 emacs-eclim
+				 e2wm calfw calfw-gcal
+				 cmake-mode cmake-project autopair cpputils-cmake
+				 use-package)
   "A list of packages to ensure are installed at launch.")
 
 (unless package-archive-contents
@@ -85,6 +101,7 @@
  '(initial-buffer-choice t)
  '(openwith-associations (quote (("\\.\\(?:\\pdf\\|ps\\|djvu\\)\\'" "okular" (file)) ("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp4\\|mp3\\)\\'" "vlc" (file)) ("\\.\\(?:jp?g\\|png\\)\\'" "gwenview" (file)) ("\\.\\(?:\\doc\\|docx\\|ppt\\|pptx\\|xls\\|xlsx\\|odt\\)\\'" "libreoffice" (file)) ("\\.chm\\'" "kchmviewer" (file)))))
  '(openwith-mode t)
+ '(org-agenda-files nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 (require 'baoduy)
 (when window-system
@@ -112,3 +129,5 @@
  '(highlight ((t (:background "gray15"))))
  '(show-paren-match ((t (:background "gray30"))))
  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
+;; (put 'narrow-to-region 'disabled nil)
+;; (put 'downcase-region 'disabled nil)

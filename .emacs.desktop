@@ -1,0 +1,29 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon Oct 14 21:38:37 2013
+;; Desktop file format version 206
+;; Emacs version 24.1.50.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(".emacs.d/\"" "org"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/w34p0n/tools/emacs-space/repo/org-mode/lisp/org-capture.el"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/w34p0n/Dropbox/org/mygtd.org"
+  "mygtd.org"
+  'org-mode
+  '(autopair-mode openwith-mode auto-complete-mode global-auto-revert-mode override-global-mode linum-mode org2blog/wp-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t)))
+

@@ -2,21 +2,23 @@
 (require 'baoduy/misc-func)
 (require 'baoduy/cusKey)
 
-;; =======================================================
-;; config for Autocomplete
-;; =======================================================
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat baoduy-repo-path "auto-complete/dict"))
-(require 'auto-complete-config)
-(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
-                sass-mode yaml-mode csv-mode espresso-mode haskell-mode
-                html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode textile-mode markdown-mode tuareg-mode
-                js3-mode css-mode less-css-mode sql-mode ielm-mode cmake-mode c-mode-common-hook java-mode))
-  (add-to-list 'ac-modes mode))
+(require 'baoduy/dbd-init-ac)
+(require 'recentf)
+
 (autopair-global-mode 1)
 (global-auto-highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'yas-minor-mode)
+(add-hook 'prog-mode-hook 'eldoc-mode)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq display-time-24hr-format t)
+(global-auto-revert-mode t)
+(desktop-save-mode 1)
+(setq make-backup-files nil
+      auto-save-default t)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key (kbd "C-S-t") 'recentf-open-files) ; similar (define-key global-map <key> <symbol>)
+
 
 ;; load customize for each work-mode
 (cond
@@ -47,12 +49,13 @@
  ((string= "CLOJURE" work-mode)
   (print "My setup for clojure environment")
   (require 'baoduy/clojure-config))
+ ((string= "ORG2BLOG" work-mode)
+  (print "My setup for org2blog environment")
+  (require 'baoduy/org2blog-config))
  (t 
   (print "Load default space")
   (require 'baoduy/default-config)
   ))
 
-(ac-config-custom)
 (require 'baoduy/ui)
-(require 'baoduy/cui)
 (provide 'baoduy)
