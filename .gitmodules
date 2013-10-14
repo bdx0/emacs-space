@@ -4,3 +4,6 @@
 [submodule "repo/org-mode"]
 	path = repo/org-mode
 	url = git://repo.or.cz/org-mode.git
+[submodule "repo/org2blog"]
+	path = repo/org2blog
+	url = https://github.com/punchagan/org2blog.git
