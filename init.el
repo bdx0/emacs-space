@@ -97,7 +97,6 @@
  '(display-time-mode t)
  '(ecb-options-version "2.40")
  '(find-file-hook (quote (global-linum-mode-check-buffers global-font-lock-mode-check-buffers epa-file-find-file-hook vc-find-file-hook)))
- '(font-use-system-font t)
  '(initial-buffer-choice t)
  '(openwith-associations (quote (("\\.\\(?:\\pdf\\|ps\\|djvu\\)\\'" "okular" (file)) ("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp4\\|mp3\\)\\'" "vlc" (file)) ("\\.\\(?:jp?g\\|png\\)\\'" "gwenview" (file)) ("\\.\\(?:\\doc\\|docx\\|ppt\\|pptx\\|xls\\|xlsx\\|odt\\)\\'" "libreoffice" (file)) ("\\.chm\\'" "kchmviewer" (file)))))
  '(openwith-mode t)
@@ -120,14 +119,14 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal))))
- '(highlight ((t (:background "gray15"))))
- '(show-paren-match ((t (:background "gray30"))))
- '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal))))
+;;  '(highlight ((t (:background "gray15"))))
+;;  '(show-paren-match ((t (:background "gray30"))))
+;;  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
 ;; (put 'narrow-to-region 'disabled nil)
-;; (put 'downcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

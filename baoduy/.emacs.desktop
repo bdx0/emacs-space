@@ -1,0 +1,29 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Mon Oct 14 22:15:55 2013
+;; Desktop file format version 206
+;; Emacs version 24.1.50.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/w34p0n/.emacs.d/baoduy" "~/.emacs.d/baoduy/default-config.el" "~/Dropbox/org/mygtd.org" "~/tools/emacs-space/repo/org-mode/lisp/org-capture.el" "~/tools/emacs-space/init.el" "~/tools/emacs-space/elpa/org2blog-20130704.908/org2blog.el" "~/.emacs.d/baoduy/default-config.el" "~/.netrc" "~/.emacs.d/url/cookies" "~/Dropbox/org/todo.org" "~/.emacs.d/init.el" "~/tools/installed/share/emacs/24.1.50/lisp/emacs-lisp/cl.el.gz" "~/.emacs.d/elpa/orglue-readme.txt" "~/.emacs.d/elpa/xml-rpc-readme.txt" "~/.emacs.d/elpa/org2blog-20130704.908/org2blog-autoloads.el" "~/.emacs.d/elpa/xml-rpc-20130423.1656/xml-rpc-autoloads.el" "~/.emacs.d/elpa/metaweblog-20130707.1701/metaweblog-autoloads.el" "~/.emacs.d/elpa/archives/gnu/archive-contents" "~/.emacs.d/elpa/archives/marmalade/archive-contents" "~/.emacs.d/elpa/archives/melpa/archive-contents" "~/.emacs.d/elpa/archives/orgmode/archive-contents"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/w34p0n/.emacs.d/baoduy/default-config.el"
+  "default-config.el"
+  'emacs-lisp-mode
+  '(autopair-mode yas-minor-mode auto-highlight-symbol-mode openwith-mode auto-complete-mode global-auto-revert-mode override-global-mode eldoc-mode)
+  2074
+  '(1047 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+

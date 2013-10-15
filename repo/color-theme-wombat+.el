@@ -435,4 +435,5 @@
      (woman-unknown ((t (:foreground "cyan1")))))))
 (add-to-list 'color-themes '(color-theme-wombat+  "Wombat+" "Scott Jaderholm <scott@jaderholm.com> and Peter Severin, original theme by Lars Nielsen"))
 
+(provide 'color-theme-wombat+)
 ;;; color-theme-wombat+.el ends here

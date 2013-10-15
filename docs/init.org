@@ -5,6 +5,8 @@
   The packages on this site are mainly intended to enhance the usefulness of Emacs in editing Latex and XML documents, and to make this functionality more accessible to the non-programmer
 ** Emacs packages
    Auto-complete,
+** WAITING navi-mode.el 
+   as a kind of remote-control for a (huge) Org-mode buffer (we use Bernt Hansen's excellent Org-mode tutorial as example). 'navi-mode' opens a permanent read-only buffer (similar to an *Occur* buffer) that enables fast navigation, visibility cyclying and structure editing with one-key commands without changing the visibility or the original Org-mode buffer.
 ** ispell-multi.el
    ispell-multi.el enables Emacs to keep a number of ispell processes alive in order to spell-check text efficiently in multiple languages, and it provides a hook that tells flyspell to switch languages depending on the value of a particular text property.
    It provides the infrastructure on which flyspell-xml-lang.el and flyspell-babel.el (see below) are built, and it is a prerequisite for

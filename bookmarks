@@ -1,0 +1,10 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "~/Dropbox/org/stuff.org")
+ (front-context-string . "** C++ developme")
+ (rear-context-string . "comment\n* C/C++\n")
+ (position . 7944))
+)

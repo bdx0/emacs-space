@@ -44,9 +44,11 @@
 (delete-selection-mode t)
 (transient-mark-mode t)
 ;;; get color theme
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-tty-dark)
+;; (require 'color-theme)
+;; (color-theme-initialize)
+;; (color-theme-billw)
+(require 'color-theme-wombat+)
+(color-theme-wombat+)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
