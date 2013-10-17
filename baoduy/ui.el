@@ -61,5 +61,11 @@
  '(highlight ((t (:background "gray15"))))
  )
 
+(dbd-set-title-mode (let ((mode-local (getenv "WORK_MODE"))
+			  )
+		      (print mode-local)
+		      (if (or (string= mode-local "") (string= mode-local "nil"))
+			"ORGMODE"
+			mode-local)))
 ;; end UI
 (provide 'baoduy/ui)

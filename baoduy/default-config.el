@@ -2,8 +2,6 @@
 ;; set default title frame format
 ;;; Code:
 
-(dbd-set-title-mode "ORG-MODE")
-
 ;; ==========================
 ;; config for org-mode
 (defvar dbd-org-data-dir "~/Dropbox/org")
@@ -124,7 +122,9 @@
        (setq org-directory dbd-org-data-dir)
        ;; (print (dbd-list-dir-with-exclude dbd-org-data-dir   "." ".." ".git" ".gitignore"  ))
        (setq org-agenda-files   (directory-files dbd-org-data-dir nil "\\.org$"))
-
+					; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+       (setq org-refile-targets (quote ((nil :maxlevel . 9)
+					(org-agenda-files :maxlevel . 9))))
        (setq org-global-properties
 	     '(("Effort_ALL". "0:05 0:15 0:30 1:00 2:00 3:00 4:00")))
        ;; config for org agenda
@@ -169,7 +169,8 @@
 	       ("gmap"      . "http://maps.google.com/maps?q=%s")
 	       ("omap"      . "http://nominatim.openstreetmap.org/search?q=%s&polygon=1")
 	       ("ads"       . "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&db_key=AST")))
-       (let ((feedfile (dbd-org-feed-dirs "feed")))
+       (let ((feedfile (dbd-org-feed-dirs "feed"))
+	     (linuxfeed (dbd-org-feed-dirs "linuxfeed")))
 	 (defun dbd-eval-symbol-in-list (&rest dbd-l)
 	   (let ((tmp-list '()))
 	     (dolist (p dbd-l)  
@@ -186,7 +187,12 @@
 	     (reverse tmp-list)
 	     ))
 	 (setq org-feed-alist
-	       (dbd-eval-symbol-in-list '("Slashdot"
+	       (dbd-eval-symbol-in-list '("Linux kernel"
+					  "https://www.kernel.org/feeds/all.atom.xml"
+					  linuxfeed
+					  "Linux kernel entries"
+					  )
+					'("Slashdot"
 					  "http://rss.slashdot.org/Slashdot/slashdot"
 					  feedfile
 					  "Slashdot Entries")
@@ -216,6 +222,29 @@
 
 
        )))
+
+(defvar dbd-org-header-default "# -*- mode: org; fill-column: 90; -*- 
+#+STARTUP: overview noinlineimages hidestars
+#+OPTIONS: H:3 num:nil toc:nil \\:nil ::t |:t ^:t -:t f:t *:t tex:t d:(HIDE) tags:not-in-toc
+#+CATEGORY: %s
+#+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:http://thomasf.github.io/solarized-css/org-info.min.js
+#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"http://thomasf.github.io/solarized-css/solarized-light.min.css\" />
+#+email: baoduy.duong0206[at]gmail[dot]com
+#+author: Duong Bao Duy
+#+TITLE: %s
+#+DRAWERS: hidden
+#+MODIFIED_DATE: [%s]
+# =====================================================================\n
+" "This is a default header for org file.")
+
+(defun dbd-org-insert-header()
+  (interactive)
+  (let ((default-category "uncategory")
+	(default-title "untitle")
+	(default-modified-date (format-time-string "%Y-%m-%d %a %R")))
+    (goto-char (point-min))
+    (insert (format dbd-org-header-default default-category default-title default-modified-date))
+    ))
 
 (defun gtd ()
   (interactive)
