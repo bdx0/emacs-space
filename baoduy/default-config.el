@@ -210,6 +210,38 @@
 					  "Standford Sources entries"))))
        
        (setq org-attach-store-link-p t)
+       (setq github-page-jekyll "~/tmp/github-page-jekyll/duongbaoduy.github.io")
+       (require 'ox-publish)
+       (setq org-publish-project-alist
+	     '(("blog"
+		:base-directory "~/Dropbox/org/public_org"
+		:html-extension "html"
+		:base-extension "org"
+		:publishing-directory "~/Dropbox/org/public_html"
+		:publishing-function (org-html-publish-to-html)
+		:html-preamble nil
+		:html-postamble nil)
+	       ("duongbaoduy"
+		;; Path to your org files.
+		:base-directory "~/Dropbox/org/blogs"
+		:base-extension "org"
+		;; Path to your Jekyll project.
+		:publishing-directory "~/tmp/github-page-jekyll/duongbaoduy.github.io/"
+		:recursive t
+		:publishing-function org-html-publish-to-html
+		:headline-levels 4 
+		:html-extension "html"
+		:body-only t ;; Only export section between <body> </body>
+		)
+	       ("duongbaoduy-static"
+		:base-directory "~/Dropbox/org/blogs"
+		:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+		:publishing-directory "~/tmp/github-page-jekyll/duongbaoduy.github.io/"
+		:recursive t
+		:publishing-function org-publish-attachment)
+	       
+	       ("jekyll" :components ("duongbaoduy" "duongbaoduy-static"))
+	       ))
        ;; config for Internet Rely Chat
        (use-package erc
 	 :config

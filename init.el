@@ -65,7 +65,8 @@
 				 smex
 				 yasnippet
 				 inf-ruby
-				 ;;				 org org-plus-contrib 
+				 ;;				 org org-plus-contrib
+				 org-jekyll
 				 org2blog
 				 color-theme
 				 clojure-mode clojure-test-mode nrepl paredit

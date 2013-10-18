@@ -1,0 +1,6 @@
+* About me
+  I'm Bao Duy. I'm a open source hacker. Most of rest time, I spend to build, install, test the open source software around the world. Then, at a day, I see the GNUEmacs and ask a question: "How this is work ??". I decide hack into Emacs. So, the big world appeare in my eye.
+  This is the first of my elisp project.  But, I do it to research about a problem. This is "How to control the process and thread on Emacs ???". It is my project try to do.
+  Now, it is still my ideas. I will try to implement it in the time use emacs.
+* Features
+* Roadmap

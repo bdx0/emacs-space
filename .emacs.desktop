@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Mon Oct 14 21:38:37 2013
+;; Created Wed Oct 16 15:30:36 2013
 ;; Desktop file format version 206
 ;; Emacs version 24.1.50.1
 
@@ -17,13 +17,13 @@
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
-  "/home/w34p0n/Dropbox/org/mygtd.org"
-  "mygtd.org"
-  'org-mode
-  '(autopair-mode openwith-mode auto-complete-mode global-auto-revert-mode override-global-mode linum-mode org2blog/wp-mode)
-  1
+  nil
+  "cpp"
+  'dired-mode
+  '(openwith-mode global-auto-revert-mode linum-mode)
+  235
   '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t)))
+  t
+  '("/home/w34p0n/mydisk/workspace/cpp/")
+  nil)
 
