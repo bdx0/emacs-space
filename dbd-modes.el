@@ -10,14 +10,16 @@
   (setenv "WORK_MODE" "ORG2BLOG")
   (start-process "ORG2BLOG" "*ORG2BLOG*" "emacs" (expand-file-name "blogs/index.org" dbd-org-data-dir)))
 
-(setq dbd-emacs-instance 1)
 (defun dbd-default-mode()
   "only load new frame"
   (new-frame))
 
+(setenv "INSTANCE" "1")
+
 (defun dbd-ec-new()
   "Create new instance of default mode."
-  (setq dbd-emacs-instance (+ dbd-emacs-instance 1))
+  (setq dbd-emacs-instance (+ (string-to-number (getenv "INSTANCE")) 1))
+  (setenv "INSTANCE" (number-to-string dbd-emacs-instance))
   (setenv "WORK_MODE" (concat "Instance-" (number-to-string dbd-emacs-instance)))
   (start-process "NEW" "*NEW*" "emacs")
   )
@@ -81,10 +83,10 @@
 (add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.tag$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
-(add-hook 'sgml-mode-hook
-          (lambda ()
-            (require 'rename-sgml-tag)
-            (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)))
+;; (add-hook 'sgml-mode-hook
+;;           (lambda ()
+;;             (require 'rename-sgml-tag)
+;;             (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)))
 
 ;; RevealJS slide sets
 (add-hook 'sgml-mode-hook

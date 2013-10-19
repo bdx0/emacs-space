@@ -7,3 +7,9 @@
 [submodule "repo/org2blog"]
 	path = repo/org2blog
 	url = https://github.com/punchagan/org2blog.git
+[submodule "malabar-mode"]
+	path = repo/malabar-mode
+	url = https://github.com/espenhw/malabar-mode.git
+[submodule "yasnippet-snippets"]
+	path = repo/yasnippet-snippets
+	url = https://github.com/AndreaCrotti/yasnippet-snippets.git

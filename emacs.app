@@ -29,6 +29,7 @@ alias ll='ls -l'
 alias la='ls -l -a'
 
 
+export INSTANCE=0
 export GTK_IM_MODULE=ibus
 export XMODIFIERS="@im=ibus"
 export QT_IM_MODULE=ibus
