@@ -95,9 +95,10 @@
 
 (defun dbd-java-malabar-mode-config ()
   (require 'cedet)
-  (semantic-load-enable-minimum-features) ;; or enable more if you wish
+  (require 'semantic)
+  ;; (semantic-load-enable-minimum-features) ;; or enable more if you wish
   (require 'malabar-mode)
-  (setq malabar-groovy-lib-dir "/path/to/malabar/lib")
+  (setq malabar-groovy-lib-dir (expand-file-name "~/tools/emacs-space/repo/malabar-mode/src/main/groovy/org/grumblesmurf/malabar/"))
   (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
   )
 

@@ -1,4 +1,4 @@
-[submodule "cedet"]
+[submodule "repo/cedet"]
       path = repo/cedet
       url = git://git.randomsample.de/cedet.git
 [submodule "repo/org-mode"]
@@ -7,9 +7,9 @@
 [submodule "repo/org2blog"]
 	path = repo/org2blog
 	url = https://github.com/punchagan/org2blog.git
-[submodule "malabar-mode"]
-	path = repo/malabar-mode
-	url = https://github.com/espenhw/malabar-mode.git
-[submodule "yasnippet-snippets"]
+[submodule "repo/yasnippet-snippets"]
 	path = repo/yasnippet-snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
+[submodule "repo/malabar-mode"]
+	path = repo/malabar-mode
+	url = https://github.com/espenhw/malabar-mode.git
