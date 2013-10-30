@@ -1,10 +1,4 @@
-(require 'baoduy/load-package)
-
-(require 'baoduy/misc-func)
-(require 'baoduy/cusKey)
-
-(require 'baoduy/dbd-init-ac)
-(require 'recentf)
+(require 'dbd-load)
 
 (autopair-global-mode 1)
 (global-auto-highlight-symbol-mode)
@@ -19,7 +13,7 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key (kbd "C-S-t") 'recentf-open-files) ; similar (define-key global-map <key> <symbol>)
-
+ (set-buffer-file-coding-system 'utf-8 t)
 
 ;; load customize for each work-mode
 (cond

@@ -32,7 +32,7 @@
 (defun dbd-java-mode ()
   "This function call JAVA IDE process"
   (setenv "WORK_MODE" "JAVA")
-  (start-process "JAVA IDE" "*JAVA IDE*" "emacs" "--debug-init")
+  (start-process "JAVA IDE" "*JAVA IDE*" "emacs" "--debug-init" "-q" "-l" "~/tools/emacs-space/init.el")
   )
 
 (defun dbd-eclim-mode ()

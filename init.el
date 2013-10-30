@@ -15,6 +15,7 @@
 
 (defvar user-emacs-directory baoduy-emacs-src)
 (let ((default-directory baoduy-emacs-src))
+  (load-file (expand-file-name  "~/.emacs.d/repo/jde/cedet-1.1/common/cedet.elc"))
   (setq dbd-first-load-path (mapcar (lambda (x) (expand-file-name x)) '("repo/org-mode/lisp" "repo/org-mode/contrib/lisp")))
   (setq load-path (append dbd-first-load-path load-path))
   (add-to-list 'load-path default-directory )
@@ -23,7 +24,7 @@
 (defvar baoduy-repo-path 
   (concat baoduy-emacs-src "repo/") "This is a path0 to my repo path")
 ;; config my infomation
-(require 'dbd-load)
+(require 'package)
 (defvar v_home (equal (getenv "USER") "w34p0n"))
 (defvar user-mail-address "dbaoduy@gmail.com")
 (defvar user-full-name "heck_cell")
@@ -65,11 +66,11 @@
 				 smex
 				 yasnippet
 				 inf-ruby
-				 ;;				 org org-plus-contrib
+				 org org-plus-contrib
 				 org-jekyll
 				 org2blog
 				 color-theme
-				 clojure-mode clojure-test-mode nrepl paredit
+				 clojure-mode clojure-test-mode nrepl cider
 				 company company-cmake pysmell pymacs
 				 auto-complete auto-complete-nxml
 				 openwith
@@ -79,7 +80,8 @@
 				 emacs-eclim
 				 e2wm calfw calfw-gcal
 				 cmake-mode cmake-project autopair cpputils-cmake
-				 use-package)
+				 use-package
+				 gtags)
   "A list of packages to ensure are installed at launch.")
 
 (unless package-archive-contents
@@ -130,4 +132,3 @@
 ;;  '(show-paren-match ((t (:background "gray30"))))
 ;;  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
 ;; (put 'narrow-to-region 'disabled nil)
-(put 'downcase-region 'disabled nil)

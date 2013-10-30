@@ -44,6 +44,7 @@ export PATH=$PATH:~/tools/android_sdk/tools			    # ....
 export PATH=$PATH:~/tmp/bin/:/opt/flex/bin			    # flex
 export PATH=$PATH:~/mydisk/google-dev/automate/cef3/depot_tools	    # chromium
 export PATH=$PATH:~/bin/heroku/bin				    # heroku -- a ruby/clojure/java server
+export PATH=$PATH:~/tools/apache-maven-3.1.1/bin   # fix mvn on window
 export SSH_AUTH_SOCK=0
 export EDITOR=/home/w34p0n/bin/SciTE
 #export EDITOR=~/tools/installed/bin/emacs-24.0.94

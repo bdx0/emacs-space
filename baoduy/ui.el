@@ -50,16 +50,16 @@
 (require 'color-theme-wombat+)
 (color-theme-wombat+)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal))))
- '(show-paren-match ((t (:background "gray30"))))
- '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white"))))
- '(highlight ((t (:background "gray15"))))
- )
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal))))
+;;  '(show-paren-match ((t (:background "gray30"))))
+;;  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white"))))
+;;  '(highlight ((t (:background "gray15"))))
+;;  )
 
 (dbd-set-title-mode (let ((mode-local (getenv "WORK_MODE"))
 			  )

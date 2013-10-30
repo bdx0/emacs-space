@@ -212,21 +212,6 @@ push-queue.org"
   (setenv "WORK_MODE" "ECLIM")
   (start-process "ECLIM IDE" "*Messages*" "emacs" "--debug-init"))
 
-(defun eclim-run ()
-  "Call it to run ECLIM IDE"
-  (interactive)
-  (run-ECLIM-IDE-other-process))
-
-(defun clojure-run ()
-  "Call it to run CLOJURE IDE"
-  (interactive)
-  (run-CLOJURE-IDE-other-process))
-
-(defun CEDET ()
-  "Call it to run CEDET IDE"
-  (interactive)
-  (run-CEDET-other-process))
-
 (defun kill-current()
   (interactive)
   (kill-buffer (current-buffer)))

@@ -13,3 +13,6 @@
 [submodule "repo/malabar-mode"]
 	path = repo/malabar-mode
 	url = https://github.com/espenhw/malabar-mode.git
+[submodule "repo/paredit"]
+	path = repo/paredit
+	url = http://mumble.net/~campbell/git/paredit.git/

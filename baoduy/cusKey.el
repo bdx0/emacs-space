@@ -27,9 +27,9 @@
 
 (global-set-key  [f1] 'toggle-speed-bar)
 (global-set-key  [f2] (lambda ()  (interactive)(shell)))
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-S-z") 'redo)
-(global-set-key (kbd "<M-escape>") 'kill-current)
+;; (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'indent-buffer)
+(global-set-key (kbd "M-q") 'kill-current)
 (global-set-key [S-mouse-2] 'browse-url-at-mouse)
 (global-set-key [C-tab] 'other-window)
 

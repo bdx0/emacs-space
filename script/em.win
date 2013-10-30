@@ -1,0 +1,19 @@
+#!/bin/bash
+
+usr=$(whoami)
+emacs_daemon="emacs --daemon"
+cmd="ps auxww | grep \"$usr.*$emacs_daemon\" | grep -v grep"
+#echo "$cmd"
+is_running=$(eval "$cmd")
+if [ -z "$is_running" ]
+then
+    echo "Starting emacs daemon"
+    eval "$emacs_daemon"
+    if [ $? -ne 0 ]
+    then
+        echo "$0: Cannot start $emacs_daemon" >&2
+        exit
+    fi
+fi
+emacsclient -a "" -t "$@"
+exit $?

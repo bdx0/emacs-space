@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;; 
 
-(require 'package)
 (require 'org-loaddefs)
 (require 'org-habit)
 (require 'dbd-modes)
@@ -16,7 +15,11 @@
 (require 'yasnippet)
 (require 'auto-highlight-symbol)
 (require 'highlight-symbol)
+(require 'recentf)
 
+(require 'baoduy/misc-func)
+(require 'baoduy/cusKey)
+(require 'baoduy/dbd-init-ac)
 
 (provide 'dbd-load)
 

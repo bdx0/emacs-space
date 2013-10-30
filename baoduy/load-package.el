@@ -1,12 +1,2 @@
-(require 'dbd-modes)
-(require 'dired+)
-(require 'paren)
-(require 'nav)
-(require 'ido)
-(require 'smex)
-(require 'autopair)
-(require 'yasnippet)
-(require 'auto-highlight-symbol)
-(require 'highlight-symbol)
 
 (provide 'baoduy/load-package)

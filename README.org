@@ -3,4 +3,12 @@
   This is the first of my elisp project.  But, I do it to research about a problem. This is "How to control the process and thread on Emacs ???". It is my project try to do.
   Now, it is still my ideas. I will try to implement it in the time use emacs.
 * Features
+** CEDET & auto-complete-clang for C/C++ mode
+** JDE for java mode
+** Clojure & slime for clojure mode
+** Org-mode for note, remember, getting thing done.
+** Org-mode & Ruby mode for duongbaoduy.github.io
+** linum mode, no menubar, no toolbar, no scrollbar, colore theme combat+, ido/helm mode, tabbar
+* WishList
+** http://ourcomments.org/Emacs/nXhtml/doc/nxhtml.html nxhtml for web development, web-mode
 * Roadmap
