@@ -1,9 +1,6 @@
-[submodule "repo/cedet"]
-      path = repo/cedet
-      url = git://git.randomsample.de/cedet.git
 [submodule "repo/org-mode"]
 	path = repo/org-mode
-	url = git://repo.or.cz/org-mode.git
+	url = git://orgmode.org/org-mode.git
 [submodule "repo/org2blog"]
 	path = repo/org2blog
 	url = https://github.com/punchagan/org2blog.git
@@ -15,4 +12,4 @@
 	url = https://github.com/espenhw/malabar-mode.git
 [submodule "repo/paredit"]
 	path = repo/paredit
-	url = http://mumble.net/~campbell/git/paredit.git/
+	url = http://mumble.net/~campbell/git/paredit.git

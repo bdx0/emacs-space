@@ -42,6 +42,7 @@
 
 (defun dbd-clojure-mode ()
   "This function use to run CLOJURE IDE on other process"
+  (interactive)
   (setenv "WORK_MODE" "CLOJURE")
   (start-process "CLOJURE IDE" "*CLOJURE IDE*" "emacs" "--debug-init"))
 

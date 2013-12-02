@@ -5,6 +5,8 @@
 ;;
 ;;
 ;; 
+(setq debug-on-error t)
+
 (setq message-log-max 16384)
 (defconst emacs-start-time (current-time))
 (unless noninteractive
@@ -15,16 +17,20 @@
 
 (defvar user-emacs-directory baoduy-emacs-src)
 (let ((default-directory baoduy-emacs-src))
-  (load-file (expand-file-name  "~/.emacs.d/repo/jde/cedet-1.1/common/cedet.elc"))
+  (load-file (expand-file-name  "~/.emacs.d/repo/jde/cedet-1.1/common/cedet.el"))
   (setq dbd-first-load-path (mapcar (lambda (x) (expand-file-name x)) '("repo/org-mode/lisp" "repo/org-mode/contrib/lisp")))
   (setq load-path (append dbd-first-load-path load-path))
   (add-to-list 'load-path default-directory )
   (normal-top-level-add-subdirs-to-load-path)
   )
+
+(let ((path-from-shell "/usr/local/Library/ENV/4.3:/usr/local/opt/autoconf/bin:/usr/local/opt/automake/bin:/usr/local/opt/pkg-config/bin:/usr/bin:/bin:/usr/sbin:/sbin:/private/tmp/emacs-4uFz/emacs-24.3/lib-src:/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.0.0:/Applications/Apps/Emacs.app/Contents/MacOS:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/duongbaoduy/app/android-tools/sdk/tools:/Users/duongbaoduy/app/android-tools/sdk/platform-tools:/opt/local/bin:/opt/X11/bin:/Users/duongbaoduy/bin:/usr/local/bin")) ;;(shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
+  (setenv "PATH" path-from-shell)
+  (setq exec-path (append exec-path (split-string path-from-shell path-separator))))
+
 (defvar baoduy-repo-path 
   (concat baoduy-emacs-src "repo/") "This is a path0 to my repo path")
 ;; config my infomation
-(require 'package)
 (defvar v_home (equal (getenv "USER") "w34p0n"))
 (defvar user-mail-address "dbaoduy@gmail.com")
 (defvar user-full-name "heck_cell")
@@ -37,9 +43,26 @@
       (setq debug-on-error dbd-dbg))
   (print dbd-log)
   )
-
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(defvar dbd-system-type 0 "running system type")
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+  (progn
+    (setq dbd-system-type 1)
+    (message "Microsoft Windows") )
+  )
+ ((string-equal system-type "darwin")   ; Mac OS X
+  (progn
+    (setq dbd-system-type 2)
+    (message "Mac OS X")
+    )
+  )
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (setq dbd-system-type 0)
+    (message "Linux") )
+  )
+ )
+(require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
@@ -50,38 +73,39 @@
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (package-initialize)
+;; auto-highlight-symbol
 ;; Set up package system
-(defvar  my-packages '(glsl-mode auto-highlight-symbol highlight-symbol
-				 graphviz-dot-mode impatient-mode js2-mode lua-mode markdown-mode
-				 ido-ubiquitous
-				 javadoc-lookup
-				 magit
-				 slime
-				 memoize
-				 multiple-cursors
-				 parenface
-				 rdp
-				 simple-httpd
-				 skewer-mode
-				 smex
-				 yasnippet
-				 inf-ruby
-				 org org-plus-contrib
-				 org-jekyll
-				 org2blog
-				 color-theme
-				 clojure-mode clojure-test-mode nrepl cider
-				 company company-cmake pysmell pymacs
-				 auto-complete auto-complete-nxml
-				 openwith
-				 dired+
-				 ecb
-				 ac-dabbrev ac-geiser ac-helm ac-ja ac-js2 ac-math ac-nrepl ac-slime
-				 emacs-eclim
-				 e2wm calfw calfw-gcal
-				 cmake-mode cmake-project autopair cpputils-cmake
-				 use-package
-				 gtags)
+(defvar  my-packages '(glsl-mode  highlight-symbol
+				  graphviz-dot-mode impatient-mode js2-mode lua-mode markdown-mode
+				  ido-ubiquitous
+				  javadoc-lookup
+				  magit
+				  slime
+				  memoize
+				  multiple-cursors
+				  parenface
+				  rdp
+				  simple-httpd
+				  skewer-mode
+				  smex
+				  yasnippet
+				  inf-ruby
+				  org org-plus-contrib
+				  org-jekyll
+				  org2blog
+				  color-theme
+				  clojure-mode clojure-test-mode nrepl cider
+				  company company-cmake pysmell pymacs
+				  auto-complete auto-complete-nxml
+				  openwith
+				  dired+
+				  ecb
+				  ac-dabbrev ac-geiser ac-helm ac-ja ac-js2 ac-math ac-nrepl ac-slime
+				  emacs-eclim
+				  e2wm calfw calfw-gcal
+				  cmake-mode cmake-project autopair cpputils-cmake
+				  use-package
+				  gtags)
   "A list of packages to ensure are installed at launch.")
 
 (unless package-archive-contents
@@ -89,22 +113,6 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(calendar-hebrew-all-holidays-flag t)
- '(column-number-mode t)
- '(display-time-mode t)
- '(ecb-options-version "2.40")
- '(find-file-hook (quote (global-linum-mode-check-buffers global-font-lock-mode-check-buffers epa-file-find-file-hook vc-find-file-hook)))
- '(initial-buffer-choice t)
- '(openwith-associations (quote (("\\.\\(?:\\pdf\\|ps\\|djvu\\)\\'" "okular" (file)) ("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp4\\|mp3\\)\\'" "vlc" (file)) ("\\.\\(?:jp?g\\|png\\)\\'" "gwenview" (file)) ("\\.\\(?:\\doc\\|docx\\|ppt\\|pptx\\|xls\\|xlsx\\|odt\\)\\'" "libreoffice" (file)) ("\\.chm\\'" "kchmviewer" (file)))))
- '(openwith-mode t)
- '(org-agenda-files nil)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 (require 'baoduy)
 (when window-system
   (let ((elapsed (float-time (time-subtract (current-time)

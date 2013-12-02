@@ -1,0 +1,53 @@
+#!/bin/bash -   
+#title          :emacs.macs
+#description    :call specific mode for emacs server.
+#author         :dbd    
+#date           :20131012
+#version        :0.1    
+#usage          :./emacs.macs
+#notes          :config terminal integrate with emacs.       
+#bash_version   :4.2.24(1)-release
+#============================================================================
+
+# export EDITOR="emacsclient -t -n -a nano"
+# alias ec='emacsclient -c -n -a nano'
+# alias et='emacsclient -t -a nano'
+# ecs() { emacsclient -c -n -a emacs "/sudo::$*" }
+# ets() { emacsclient -t -a emacs "/sudo::$*" }
+
+alias org2blog='emacsclient -e "(dbd-org2blog-mode)"'		    # $*: bash argument 
+alias ec='emacsclient -e "(dbd-default-mode)"'
+alias ec-new='emacsclient -e "(dbd-ec-new)"'
+alias c-code='emacsclient -e "(dbd-c-cpp-mode)"'
+alias java-code='emacsclient -e "(dbd-java-mode)"'
+alias eclim-code='emacsclient -e "(dbd-eclim-mode)"'
+alias clojure-code='emacsclient -e "(dbd-clojure-mode)"'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ll='ls -l'
+alias la='ls -l -a'
+
+
+export INSTANCE=0
+export GTK_IM_MODULE=ibus
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+
+export PATH=${PATH}:~/bin:/usr/local/bin
+export COCOS2DX_ROOT=/Users/duongbaoduy/app/android-tools/cocos2d-x-2.2
+export NDK_ROOT=/Users/duongbaoduy/app/android-tools/ndk
+export SDK_ROOT=/Users/duongbaoduy/app/android-tools/sdk
+export LC_ALL=en_US.UTF-8					    # fix for rb with jekyll generating .html file.
+export LANG=en_US.UTF-8
+export JAVA_HOME=/Library/Java/Home		    # setting for openJDK on linux
+export SSH_AUTH_SOCK=0
+export BUILD_MAC_SDK_EXPERIMENTAL=1
+export CHROMIUM_SRC_PATH=/home/w34p0n/mydisk/google-dev/chromium/src # chromium
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+
+# Local Variables:
+# mode: sh  
+# comment-column: 80
+# End:
